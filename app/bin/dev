@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+var debug = require('debug')('leeln-node');
+var app = require('../app');
+
+app.set('port', process.env.PORT || 3000);
+
+var browserSync = require('browser-sync');
+
+var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+  listening();
+});
+
+function listening () {
+  browserSync({
+    open: false,
+    proxy: 'localhost:' + server.address().port,
+    files: ['public/**/*.{js,css,font}', 'views/**/*.hbs']
+  });
+}
+
+

@@ -1,0 +1,44 @@
+
+option java_package = "org.fightteam.leeln.proto";
+option java_outer_classname = "UserServiceProto";
+option java_generic_services = true;
+
+message UserMsg {
+    required int64 id = 1;
+    required string username = 2;
+    optional string nickname = 3;
+}
+
+message EmptyMsg{}
+
+message UsernameMsg{
+    required string username = 1;
+}
+
+message NicknameMsg{
+    required string nickname = 1;
+}
+
+
+message IdMsg{
+    required int64 id = 1;
+}
+
+message UsersMsg{
+    repeated UserMsg users = 1;
+}
+
+message InsertMsg{
+    required string username = 1;
+    optional string nickname = 2;
+}
+
+service UserService{
+    rpc findByUsername(UsernameMsg) returns (UserMsg);
+    rpc findByNickname(NicknameMsg) returns (UserMsg);
+    rpc findAll(EmptyMsg) returns(UsersMsg);
+    rpc findById(IdMsg) returns(UserMsg);
+    rpc insert(InsertMsg) returns(EmptyMsg);
+    rpc update(UserMsg) returns(EmptyMsg);
+    rpc delete(IdMsg) returns(EmptyMsg);
+}

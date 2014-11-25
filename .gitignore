@@ -1,16 +1,10 @@
-###################
-# Mac
-###################
-*.DS_Store
-
-###################
-# node
-###################
-node_modules
-
+*.iml
+.idea
 
 node_modules
 dist
 .tmp
 .sass-cache
-public/bower_components
+app/bower_components
+test/bower_components
+
